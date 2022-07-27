@@ -1,0 +1,168 @@
+scalar Date
+
+schema {
+  query: Query
+}
+
+type Query {
+   applicantIndividualCompanyRelations(
+    where: QueryApplicantIndividualCompanyRelationsWhereWhereConditions
+    orderBy: [QueryApplicantIndividualCompanyRelationsOrderByOrderByClause!]
+
+    # Limits number of fetched items.
+    first: Int = 10
+
+    # The offset from which items are returned.
+    page: Int
+  ): ApplicantIndividualCompanyRelationPaginator
+}
+
+type ApplicantIndividualCompanyRelationPaginator {
+  # Pagination information about the list of items.
+  paginatorInfo: PaginatorInfo!
+
+  # A list of ApplicantIndividualCompanyRelation items.
+  data: [ApplicantIndividualCompanyRelation!]!
+}
+
+input QueryApplicantIndividualCompanyRelationsWhereWhereConditions {
+  # The column that is used for the condition.
+  column: QueryApplicantIndividualCompanyRelationsWhereColumn
+
+  # The operator that is used for the condition.
+  operator: SQLOperator = EQ
+
+  # The value that is used for the condition.
+  value: Mixed
+
+  # A set of conditions that requires all conditions to match.
+  AND: [QueryApplicantIndividualCompanyRelationsWhereWhereConditions!]
+
+  # A set of conditions that requires at least one condition to match.
+  OR: [QueryApplicantIndividualCompanyRelationsWhereWhereConditions!]
+
+  # Check whether a relation exists. Extra conditions or a minimum amount can be applied.
+  HAS: QueryApplicantIndividualCompanyRelationsWhereWhereConditionsRelation
+}
+
+# Allowed column names for Query.applicantIndividualCompanyRelations.where.
+enum QueryApplicantIndividualCompanyRelationsWhereColumn {
+  NAME
+}
+
+input QueryApplicantIndividualCompanyRelationsOrderByOrderByClause {
+  # The column that is used for ordering.
+  column: QueryApplicantIndividualCompanyRelationsOrderByColumn!
+
+  # The direction that is used for ordering.
+  order: SortOrder!
+}
+
+type PaginatorInfo {
+  # Number of items in the current page.
+  count: Int!
+
+  # Index of the current page.
+  currentPage: Int!
+
+  # Index of the first item in the current page.
+  firstItem: Int
+
+  # Are there more pages after this one?
+  hasMorePages: Boolean!
+
+  # Index of the last item in the current page.
+  lastItem: Int
+
+  # Index of the last available page.
+  lastPage: Int!
+
+  # Number of items per page.
+  perPage: Int!
+
+  # Number of total available items.
+  total: Int!
+}
+
+type ApplicantIndividualCompanyRelation {
+  id: ID!
+
+  # Название
+  name: String!
+}
+
+enum SQLOperator {
+  # Equal operator (`=`)
+  EQ
+
+  # Not equal operator (`!=`)
+  NEQ
+
+  # Greater than operator (`>`)
+  GT
+
+  # Greater than or equal operator (`>=`)
+  GTE
+
+  # Less than operator (`<`)
+  LT
+
+  # Less than or equal operator (`<=`)
+  LTE
+
+  # Simple pattern matching (`LIKE`)
+  LIKE
+
+  # Negation of simple pattern matching (`NOT LIKE`)
+  NOT_LIKE
+
+  # Whether a value is within a set of values (`IN`)
+  IN
+
+  # Whether a value is not within a set of values (`NOT IN`)
+  NOT_IN
+
+  # Whether a value is within a range of values (`BETWEEN`)
+  BETWEEN
+
+  # Whether a value is not within a range of values (`NOT BETWEEN`)
+  NOT_BETWEEN
+
+  # Whether a value is null (`IS NULL`)
+  IS_NULL
+
+  # Whether a value is not null (`IS NOT NULL`)
+  IS_NOT_NULL
+}
+
+scalar Mixed
+
+# Dynamic HAS conditions for WHERE conditions for the `where` argument on the query `applicantIndividualCompanyRelations`.
+input QueryApplicantIndividualCompanyRelationsWhereWhereConditionsRelation {
+  # The relation that is checked.
+  relation: String!
+
+  # The comparison operator to test against the amount.
+  operator: SQLOperator = GTE
+
+  # The amount to test.
+  amount: Int = 1
+
+  # Additional condition logic.
+  condition: QueryApplicantIndividualCompanyRelationsWhereWhereConditions
+}
+
+enum QueryApplicantIndividualCompanyRelationsOrderByColumn {
+  ID
+  NAME
+}
+
+# Directions for ordering a list of records.
+enum SortOrder {
+  # Sort records in ascending order.
+  ASC
+
+  # Sort records in descending order.
+  DESC
+}
+
