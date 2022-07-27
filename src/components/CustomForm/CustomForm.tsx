@@ -1,5 +1,5 @@
 import { FC, useMemo } from 'react';
-import { Button, Form, Input, Select, Spin } from 'antd';
+import { Button, Form, Input, Spin } from 'antd';
 import { useFindPositionsQuery } from '../../graphqlHooks/useFindPositions';
 import { useFindRelationsQuery } from '../../graphqlHooks/useFindRelations';
 import CustomSelect from '../CustomSelect/CustomSelect';
@@ -8,8 +8,6 @@ import styles from './CustomForm.module.css';
 import 'antd/dist/antd.css';
 
 const api = 'http://152.228.215.94:83/api';
-
-interface PropsCustomForm {}
 
 enum FormFields {
   textInput = 'textInput',
@@ -24,6 +22,8 @@ interface FormSucces {
   [FormFields.SelectCompanyRelation]: string;
   [FormFields.SelectCompanyPosition]: string;
 }
+
+interface PropsCustomForm {}
 
 const CustomForm: FC<PropsCustomForm> = ({}) => {
   const { TextArea } = Input;
@@ -50,7 +50,7 @@ const CustomForm: FC<PropsCustomForm> = ({}) => {
             text: name,
           }))
         : [],
-    [positions]
+    [relations]
   );
 
   const isLoading = useMemo(
